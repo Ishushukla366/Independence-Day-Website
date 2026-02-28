@@ -57,7 +57,6 @@ Free to use for educational purposes
 
 ## Live Demo
 This website is hosted on GitHub Pages and can be accessed at:
-[Add your GitHub Pages URL here]
-
+[https://Ishushukla366.github.io/Independence-Day-Website/](https://Ishushukla366.github.io/Independence-Day-Website/)
 ---
 **Note**: All content is for educational purposes. Images and information are sourced to provide accurate historical context.
