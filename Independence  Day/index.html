@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India's Struggle to Glory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --saffron: #ff9933;
+            --white: #ffffff;
+            --green: #138808;
+            --navy: #000080;
+            --gold: #FFD700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+
+        .hindi-font {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        /* Cinematic Intro */
+        .tricolor-bg {
+            background: linear-gradient(135deg, var(--saffron) 33%, var(--white) 33% 66%, var(--green) 66%);
+            background-size: 400% 400%;
+            animation: gradientWave 18s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fall linear infinite;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.7));
+        }
+
+        /* Floating Ashoka Chakra */
+        .ashoka-chakra {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%23000080"/><circle cx="12" cy="12" r="9" fill="none" stroke="white" stroke-width="0.5"/><path d="M12 2a10 10 0 0 1 0 20M12 2a10 10 0 0 0 0 20" stroke="white" stroke-width="0.5"/><circle cx="12" cy="12" r="1.5" fill="white"/></svg>');
+            background-size: contain;
+            opacity: 0.7;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        /* Timeline Carousel */
+        .carousel-container {
+            perspective: 1000px;
+        }
+
+        .carousel-item {
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .carousel-item.active {
+            transform: scale(1.15) translateZ(50px) rotateY(0deg);
+            z-index: 20;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .carousel-item.prev {
+            transform: scale(0.9) translateZ(30px) rotateY(20deg) translateX(-30%);
+            opacity: 0.9;
+            z-index: 15;
+        }
+
+        .carousel-item.next {
+            transform: scale(0.9) translateZ(30px) rotateY(-20deg) translateX(30%);
+            opacity: 0.9;
+            z-index: 15;
+        }
+
+        .carousel-item.far-prev {
+            transform: scale(0.7) translateZ(10px) rotateY(30deg) translateX(-60%);
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        .carousel-item.far-next {
+            transform: scale(0.7) translateZ(10px) rotateY(-30deg) translateX(60%);
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        /* Hero Showcase (Architects of Freedom Carousel - REMOVED AS PER USER REQUEST) */
+
+        /* Architects of Freedom Section */
+        .architects-section {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+
+        .architects-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .architects-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+            border-radius: 2px;
+        }
+
+        .architects-desc {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .architects-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 0 20px;
+            /* Added bottom padding for better spacing */
+            padding-bottom: 60px;
+        }
+
+        .architect-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(34,48,100,0.1);
+            width: 260px;
+            /* Adjusted min-height for better consistency and to prevent cutoff */
+            min-height: 380px; /* Increased min-height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 15px 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            /* Ensure the card content stretches if needed */
+            justify-content: space-between;
+        }
+
+        .architect-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--saffron), var(--white), var(--green));
+        }
+
+        .architect-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(34, 48, 100, 0.2);
+        }
+
+        .architect-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .architect-card:hover .architect-img {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .architect-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            color: #212529;
+            position: relative;
+            text-decoration: none; /* Ensure no underline from link */
+        }
+
+        .architect-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--saffron);
+        }
+
+        .architect-role {
+            color: #495057;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .architect-quote {
+            font-style: italic;
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: auto;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        /* Styling for the new anchor tag around architect card content */
+        .architect-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none; /* Remove default underline */
+            color: inherit; /* Inherit color from parent */
+            height: 100%; /* Make the link fill the card height */
+            width: 100%; /* Make the link fill the card width */
+            padding: 25px 15px 20px; /* Match card padding */
+        }
+
+
+        /* Finale */
+        .radial-bg {
+            background: radial-gradient(circle at center, var(--saffron) 0%, var(--white) 30%, var(--green) 60%);
+            background-size: 400% 400%;
+            animation: gradientPulse 12s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 3px;
+            animation: explode 1.8s ease-out infinite;
+            opacity: 0;
+            filter: blur(0.5px);
+        }
+
+        .firework::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(5px);
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--saffron), var(--white), var(--green));
+            width: 0%;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(255,255,255,0.7);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.7);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            padding-top: 5px;
+            z-index: 10;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 6px;
+            height: 10px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 3px;
+            animation: scrollBounce 2s infinite;
+        }
+
+        /* --- Keyframe Animations --- */
+        @keyframes gradientWave {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes gradientPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: scale(25); opacity: 0; }
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(10px); opacity: 0.5; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* --- General Media Queries --- */
+        @media (max-width: 1024px) {
+            .carousel-item.active {
+                transform: scale(1.1) translateZ(40px);
+            }
+            
+            .architect-card {
+                width: 220px;
+                min-height: 320px; /* Adjusted for smaller screens too */
+            }
+            
+            .architect-img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item.active {
+                transform: scale(1.05) translateZ(30px);
+            }
+            
+            .architects-row {
+                gap: 20px;
+            }
+            
+            .architect-card {
+                width: 200px;
+                min-height: 300px; /* Adjusted for smaller screens too */
+            }
+        }
+
+        @media (max-width: 640px) {
+            .carousel-container {
+                perspective: 500px;
+            }
+            
+            .carousel-item {
+                width: 280px !important;
+            }
+            
+            .carousel-item.active {
+                transform: scale(1) translateZ(20px);
+            }
+            
+            .architects-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+            }
+            
+            .architect-card {
+                width: 85vw;
+                max-width: 300px;
+                min-height: auto; /* Allow height to adjust on very small screens */
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Audio Toggle Button -->
+    <button id="audioToggle" class="fixed top-4 right-4 z-50 bg-white/90 rounded-full p-3 shadow-xl hover:bg-white transition-all transform hover:scale-110 hover:shadow-2xl" aria-label="Toggle background music">
+        <svg id="audioOnIcon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343" />
+        </svg>
+        <svg id="audioOffIcon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-800 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+        </svg>
+    </button>
+    
+    <audio id="bgAudio" loop>
+        <source src="E:\college assignments\Independence  Day\vande-matram-violin-background-music-268744.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Intro Section -->
+    <section id="intro" class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden tricolor-bg">
+        <div class="text-center z-10 px-4 animate__animated animate__fadeIn">
+            <h1 class="hindi-font text-5xl md:text-7xl font-bold mb-4 text-shadow-lg" style="color: black; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">भारत की गाथा</h1>
+            <h2 class="text-2xl md:text-4xl font-semibold mb-8 text-shadow-lg" style="color: black; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">From Struggle to Glory</h2>
+        </div>
+        
+        <button id="exploreBtn" class="mt-12 px-8 py-3 bg-white/30 backdrop-blur-sm rounded-full border-2 border-white font-semibold hover:bg-white/40 transition-all z-10 animate-pulse hover:animate-none hover:scale-110" style="color: black;">
+            Explore Our History
+        </button>
+        
+        <div class="scroll-indicator"></div>
+        <div id="particles"></div>
+        
+        <!-- Floating Ashoka Chakras -->
+        <div class="ashoka-chakra" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+        <div class="ashoka-chakra" style="top: 70%; left: 80%; animation-delay: 1s;"></div>
+        <div class="ashoka-chakra" style="top: 30%; left: 75%; animation-delay: 2s;"></div>
+        <div class="ashoka-chakra" style="top: 80%; left: 20%; animation-delay: 3s;"></div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="floating-element" style="top: 10%; left: 5%; width: 100px; height: 100px; background: var(--saffron); border-radius: 50%; animation-delay: 0s;"></div>
+            <div class="floating-element" style="top: 80%; left: 80%; width: 150px; height: 150px; background: var(--green); border-radius: 50%; animation-delay: 2s;"></div>
+            <div class="floating-element" style="top: 30%; left: 70%; width: 80px; height: 80px; background: var(--white); border-radius: 50%; animation-delay: 1s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate__animated animate__fadeInUp">Journey of Independence</h2>
+            
+            <div class="carousel-container relative h-96 md:h-[32rem]">
+                <div id="carousel" class="flex items-center justify-center h-full overflow-hidden">
+                    <!-- Carousel items will be inserted here by JavaScript -->
+                </div>
+                
+                <button id="carouselPrev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 p-3 rounded-full hover:bg-white/40 transition-all z-20 shadow-lg transform hover:scale-110" aria-label="Previous milestone">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="carouselNext" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 p-3 rounded-full hover:bg-white/40 transition-all z-20 shadow-lg transform hover:scale-110" aria-label="Next milestone">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Architects Section -->
+    <section class="architects-section">
+        <div class="container mx-auto px-4">
+            <h2 class="architects-title animate__animated animate__fadeIn">Architects of Freedom</h2>
+            <p class="architects-desc animate__animated animate__fadeIn animate__delay-1s">
+                The brave souls who shaped the destiny of our nation with their vision, courage and sacrifice.
+            </p>
+            
+            <div class="architects-row">
+                <!-- Each architect card is now wrapped in an anchor tag -->
+                <a href="https://en.wikipedia.org/wiki/Mahatma_Gandhi" target="_blank" rel="noopener noreferrer" class="architect-card animate__animated animate__fadeInUp animate__delay-1s">
+                    <img src="E:\college assignments\Independence  Day\assets\gandhiji.jpg" alt="Mahatma Gandhi" class="architect-img">
+                    <h3 class="architect-name">Mahatma Gandhi</h3>
+                    <p class="architect-role">Father of the Nation</p>
+                    <p class="architect-quote">"Be the change you wish to see in the world."</p>
+                </a>
+                
+                <a href="https://en.wikipedia.org/wiki/Subhas_Chandra_Bose" target="_blank" rel="noopener noreferrer" class="architect-card animate__animated animate__fadeInUp animate__delay-2s">
+                    <img src="E:\college assignments\Independence  Day\assets\bose.jpg" alt="Subhas Chandra Bose" class="architect-img">
+                    <h3 class="architect-name">Subhas Chandra Bose</h3>
+                    <p class="architect-role">Netaji</p>
+                    <p class="architect-quote">"Give me blood and I will give you freedom!"</p>
+                </a>
+                
+                <a href="https://en.wikipedia.org/wiki/Jawaharlal_Nehru" target="_blank" rel="noopener noreferrer" class="architect-card animate__animated animate__fadeInUp animate__delay-3s">
+                    <img src="E:\college assignments\Independence  Day\assets\nehruji.jpg" alt="Jawaharlal Nehru" class="architect-img">
+                    <h3 class="architect-name">Jawaharlal Nehru</h3>
+                    <p class="architect-role">First Prime Minister</p>
+                    <p class="architect-quote">"At the stroke of the midnight hour..."</p>
+                </a>
+                
+                <a href="https://en.wikipedia.org/wiki/Bhagat_Singh" target="_blank" rel="noopener noreferrer" class="architect-card animate__animated animate__fadeInUp animate__delay-4s">
+                    <img src="E:\college assignments\Independence  Day\assets\bhagat singh.jpg" alt="Bhagat Singh" class="architect-img">
+                    <h3 class="architect-name">Bhagat Singh</h3>
+                    <p class="architect-role">Revolutionary Martyr</p>
+                    <p class="architect-quote">"They may kill me, but they cannot kill my ideas."</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Finale Section -->
+    <section id="finale" class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden radial-bg">
+        <div class="text-center z-10 px-4 animate__animated animate__zoomIn">
+            <h1 class="hindi-font text-5xl md:text-7xl font-bold mb-6 text-shadow-lg" style="color: black; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">जय हिन्द!</h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-shadow-lg max-w-2xl mx-auto mb-10" style="color: black; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+                From darkness to light, from bondage to freedom
+            </h2>
+            <button class="px-8 py-3 bg-white/30 backdrop-blur-sm rounded-full border-2 border-white font-semibold hover:bg-white/40 transition-all animate-pulse" style="color: black;">
+                Pledge to Our Nation
+            </button>
+        </div>
+        
+        <div id="fireworks"></div>
+        
+        <!-- Floating Ashoka Chakras -->
+        <div class="ashoka-chakra" style="top: 15%; left: 10%; animation-delay: 0.5s;"></div>
+        <div class="ashoka-chakra" style="top: 85%; left: 85%; animation-delay: 1.5s;"></div>
+        <div class="ashoka-chakra" style="top: 25%; left: 80%; animation-delay: 2.5s;"></div>
+        <div class="ashoka-chakra" style="top: 75%; left: 15%; animation-delay: 3.5s;"></div>
+    </section>
+
+    <script>
+        // Audio Toggle
+        const audioToggle = document.getElementById('audioToggle');
+        const audioOnIcon = document.getElementById('audioOnIcon');
+        const audioOffIcon = document.getElementById('audioOffIcon');
+        const bgAudio = document.getElementById('bgAudio');
+
+        let audioEnabled = false;
+        audioToggle.addEventListener('click', () => {
+            audioEnabled = !audioEnabled;
+            
+            if (audioEnabled) {
+                bgAudio.play().catch(e => console.log("Audio playback failed:", e));
+                audioOnIcon.classList.remove('hidden');
+                audioOffIcon.classList.add('hidden');
+                audioToggle.setAttribute('aria-label', 'Mute background music');
+                audioToggle.classList.add('animate-pulse');
+            } else {
+                bgAudio.pause();
+                audioOnIcon.classList.add('hidden');
+                audioOffIcon.classList.remove('hidden');
+                audioToggle.setAttribute('aria-label', 'Unmute background music');
+                audioToggle.classList.remove('animate-pulse');
+            }
+        });
+
+        // Create particles for intro
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 150;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 10px
+                const size = Math.random() * 8 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `-${size}px`;
+                
+                // Random color (saffron, white, or green)
+                const colors = ['#ff9933', '#ffffff', '#138808', '#000080'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+                
+                // Random animation duration between 5s and 20s
+                const duration = Math.random() * 15 + 5;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Random blur effect
+                particle.style.filter = `blur(${Math.random() * 2}px)`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Explore button scroll to timeline
+        document.getElementById('exploreBtn').addEventListener('click', () => {
+            document.getElementById('timeline').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = `${scrollProgress}%`;
+        });
+
+        // Timeline Carousel
+        const milestones = [
+            {
+                year: "1757",
+                title: "Battle of Plassey",
+                description: "The British East India Company defeated the Nawab of Bengal, marking the beginning of British rule in India.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\plassey.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Battle_of_Plassey"
+            },
+            {
+                year: "1857",
+                title: "First War of Independence",
+                description: "Also known as the Sepoy Mutiny, this was the first major uprising against British rule in India.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\first war indepence.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Indian_Rebellion_of_1857"
+            },
+            {
+                year: "1885",
+                title: "Formation of Indian National Congress",
+                description: "The INC was founded, becoming India's first national political organization and a major force in the independence movement.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\national congress.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Indian_National_Congress"
+            },
+            {
+                year: "1905",
+                title: "Partition of Bengal",
+                description: "The British divided Bengal along religious lines, sparking widespread protests and the Swadeshi movement.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\bengal.jpeg",
+                wiki: "https://en.wikipedia.org/wiki/Partition_of_Bengal_(1905)"
+            },
+            {
+                year: "1919",
+                title: "Jallianwala Bagh Massacre",
+                description: "British troops fired on unarmed Indian protesters, killing hundreds and galvanizing the independence movement.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\jaliawala.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Jallianwala_Bagh_massacre"
+            },
+            {
+                year: "1920",
+                title: "Non-Cooperation Movement",
+                description: "Gandhi launched this mass movement urging Indians to withdraw from British institutions and products.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\movement.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Non-cooperation_movement"
+            },
+            {
+                year: "1930",
+                title: "Dandi March",
+                description: "Gandhi led a 240-mile march to produce salt from seawater, defying the British salt monopoly.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\dandi march.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Salt_March"
+            },
+            {
+                year: "1942",
+                title: "Quit India Movement",
+                description: "The final mass movement demanding immediate British withdrawal from India during WWII.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\quit india movement.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Quit_India_Movement"
+            },
+            {
+                year: "1947",
+                title: "Indian Independence",
+                description: "India gained independence from British rule on August 15, 1947, after nearly 200 years of colonial rule.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\independence.jpg",
+                wiki: "https://en.wikipedia.org/wiki/Indian_independence_movement"
+            },
+            {
+                year: "1950",
+                title: "Republic of India",
+                description: "India became a sovereign democratic republic with its own constitution on January 26, 1950.",
+                image: "E:\\college assignments\\Independence  Day\\assets\\republic.avif",
+                wiki: "https://en.wikipedia.org/wiki/Republic_Day_(India)"
+            }
+        ];
+
+        let currentCarouselIndex = 0;
+        let autoPlayInterval;
+
+        function createCarousel() {
+            const carousel = document.getElementById('carousel');
+            carousel.innerHTML = ''; // Clear existing items to prevent duplicates on re-render
+
+            milestones.forEach((milestone, index) => {
+                // The anchor tag now wraps the entire item content
+                const link = document.createElement('a');
+                link.href = milestone.wiki;
+                link.target = "_blank"; // Open in new tab
+                link.rel = "noopener noreferrer"; // Security best practice
+                link.className = `carousel-item absolute w-72 md:w-96 bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-lg transition-all duration-500 cursor-pointer`;
+                
+                link.innerHTML = `
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="${milestone.image}" alt="${milestone.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                            <div class="text-sm font-semibold text-white/90">${milestone.year}</div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl md:text-2xl font-bold">${milestone.title}</h3>
+                        <p class="text-sm md:text-base mt-3 text-white/90">${milestone.description}</p>
+                    </div>
+                `;
+                
+                // Removed direct click listener on item, as the whole link handles it
+                carousel.appendChild(link);
+            });
+            
+            updateCarousel();
+            startAutoPlay();
+        }
+
+        function updateCarousel() {
+            const items = document.querySelectorAll('#carousel .carousel-item');
+            items.forEach((item, index) => {
+                let position = (index - currentCarouselIndex + milestones.length) % milestones.length;
+                
+                if (position > milestones.length / 2) {
+                    position -= milestones.length;
+                }
+                
+                if (position < -milestones.length / 2) {
+                    position += milestones.length;
+                }
+                
+                // Update classes and styles based on position
+                item.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next');
+                
+                if (position === 0) {
+                    item.classList.add('active');
+                    item.style.transform = 'scale(1.15) translateZ(50px) rotateY(0deg)';
+                    item.style.zIndex = '20';
+                    item.style.opacity = '1';
+                } else if (position === 1 || position === -milestones.length + 1) {
+                    item.classList.add('next');
+                    item.style.transform = 'scale(0.9) translateZ(30px) rotateY(-20deg) translateX(30%)';
+                    item.style.zIndex = '15';
+                    item.style.opacity = '0.9';
+                } else if (position === -1 || position === milestones.length - 1) {
+                    item.classList.add('prev');
+                    item.style.transform = 'scale(0.9) translateZ(30px) rotateY(20deg) translateX(-30%)';
+                    item.style.zIndex = '15';
+                    item.style.opacity = '0.9';
+                } else if (position > 1) {
+                    item.classList.add('far-next');
+                    item.style.transform = 'scale(0.7) translateZ(10px) rotateY(-30deg) translateX(60%)';
+                    item.style.zIndex = '10';
+                    item.style.opacity = '0.6';
+                } else {
+                    item.classList.add('far-prev');
+                    item.style.transform = 'scale(0.7) translateZ(10px) rotateY(30deg) translateX(-60%)';
+                    item.style.zIndex = '10';
+                    item.style.opacity = '0.6';
+                }
+                
+                // Position items
+                const offset = position * 15;
+                item.style.left = `calc(50% + ${offset}% - 9rem)`;
+            });
+        }
+
+        function goToCarouselIndex(index) {
+            currentCarouselIndex = index;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function nextCarouselItem() {
+            currentCarouselIndex = (currentCarouselIndex + 1) % milestones.length;
+            updateCarousel();
+        }
+
+        function prevCarouselItem() {
+            currentCarouselIndex = (currentCarouselIndex - 1 + milestones.length) % milestones.length;
+            updateCarousel();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextCarouselItem, 5000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        document.getElementById('carouselNext').addEventListener('click', () => {
+            nextCarouselItem();
+            resetAutoPlay();
+        });
+        
+        document.getElementById('carouselPrev').addEventListener('click', () => {
+            prevCarouselItem();
+            resetAutoPlay();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextCarouselItem();
+                resetAutoPlay();
+            } else if (e.key === 'ArrowLeft') {
+                prevCarouselItem();
+                resetAutoPlay();
+            }
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.getElementById('carousel').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+        
+        document.getElementById('carousel').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextCarouselItem();
+                resetAutoPlay();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevCarouselItem();
+                resetAutoPlay();
+            }
+        }
+        
+        // Removed freedomFighters array and createHeroesCarousel function as it's no longer used for a separate carousel
+        
+        // Create fireworks for finale
+        function createFireworks() {
+            const fireworksContainer = document.getElementById('fireworks');
+            const colors = ['#ff9933', '#ffffff', '#138808', '#000080', '#FFD700', '#FF1493'];
+            
+            function launchFirework() {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 80 + 10; // Keep within viewport
+                firework.style.left = `${x}%`;
+                firework.style.top = `${y}%`;
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                firework.style.boxShadow = `0 0 15px 3px ${color}`;
+                
+                // Random size
+                const size = Math.random() * 3 + 2;
+                firework.style.width = `${size}px`;
+                firework.style.height = `${size}px`;
+                
+                // Random animation duration
+                const duration = Math.random() * 0.5 + 1.5;
+                firework.style.animationDuration = `${duration}s`;
+                
+                fireworksContainer.appendChild(firework);
+                
+                // Remove after animation completes
+                setTimeout(() => {
+                    firework.remove();
+                }, duration * 1000);
+                
+                // Create explosion particles
+                createExplosionParticles(x, y, color);
+            }
+            
+            // Create particles for explosion effect
+            function createExplosionParticles(x, y, color) {
+                const particleCount = 20;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particle.style.position = 'absolute';
+                    particle.style.left = `${x}%`;
+                    particle.style.top = `${y}%`;
+                    particle.style.width = '2px';
+                    particle.style.height = '2px';
+                    particle.style.backgroundColor = color;
+                    particle.style.borderRadius = '50%';
+                    particle.style.boxShadow = `0 0 5px 1px ${color}`;
+                    particle.style.animation = `explodeParticle ${Math.random() * 1 + 1}s ease-out forwards`;
+                    
+                    // Random direction
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * 50 + 30;
+                    
+                    fireworksContainer.appendChild(particle);
+                    
+                    // Animate particle
+                    setTimeout(() => {
+                        particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+                        particle.style.opacity = '0';
+                    }, 10);
+                    
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 1000);
+                }
+            }
+            
+            // Launch fireworks periodically
+            setInterval(launchFirework, 300);
+            
+            // Initial burst
+            for (let i = 0; i < 15; i++) {
+                setTimeout(launchFirework, i * 100);
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            createCarousel();
+            // createHeroesCarousel() call removed from here
+            createFireworks();
+            
+            // For demo purposes, auto-enable audio with reduced volume
+            bgAudio.volume = 0.3;
+            audioToggle.click();
+            
+            // Add intersection observers for animations
+            const animateElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.getAttribute('data-animate');
+                        entry.target.classList.add(animation);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
